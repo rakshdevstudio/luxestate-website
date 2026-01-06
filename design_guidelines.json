@@ -1,0 +1,132 @@
+{
+  "identity": {
+    "name": "LUXESTATE",
+    "tone": "Cinematic, Minimal, Dark Luxury, Enterprise-grade",
+    "audience": "High-net-worth individuals, Investors",
+    "mission": "To present real estate as art, not just assets."
+  },
+  "typography": {
+    "primary_font": "Manrope",
+    "secondary_font": "Playfair Display",
+    "font_weights": {
+      "light": 300,
+      "regular": 400,
+      "medium": 500,
+      "bold": 700
+    },
+    "usage": {
+      "headings": "font-serif tracking-tight leading-none",
+      "body": "font-sans tracking-wide leading-relaxed",
+      "overline": "font-sans uppercase tracking-[0.2em] text-xs font-medium"
+    }
+  },
+  "colors": {
+    "palette": {
+      "background": "#050505",
+      "surface": "#0F0F0F",
+      "surface_highlight": "#1A1A1A",
+      "primary": "#D4AF37",
+      "primary_muted": "#8A7020",
+      "text_main": "#F2F2F2",
+      "text_muted": "#A1A1A1",
+      "border": "#262626",
+      "error": "#7F1D1D",
+      "success": "#14532D"
+    },
+    "gradients": {
+      "gold_dust": "linear-gradient(135deg, #D4AF37 0%, #8A7020 100%)",
+      "midnight_fade": "linear-gradient(to bottom, rgba(5,5,5,0) 0%, #050505 100%)"
+    }
+  },
+  "visual_enhancers": {
+    "glassmorphism": "bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl",
+    "neon_glow": "shadow-[0_0_20px_rgba(212,175,55,0.15)]",
+    "texture_overlay": "url('https://images.pexels.com/photos/6141905/pexels-photo-6141905.jpeg')",
+    "border_radius": {
+      "default": "rounded-none",
+      "subtle": "rounded-sm"
+    }
+  },
+  "layout_strategies": {
+    "marketing": {
+      "grid": "grid-cols-1 md:grid-cols-12 gap-8",
+      "spacing": "p-8 md:p-24",
+      "container": "max-w-[1800px] mx-auto"
+    },
+    "dashboard": {
+      "grid": "grid-cols-1 md:grid-cols-4 gap-4",
+      "spacing": "p-6",
+      "style": "dense, control-room aesthetic"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#D4AF37] text-black hover:bg-[#F2C94C] transition-all duration-300 uppercase tracking-widest text-xs font-bold px-8 py-4 rounded-none",
+      "secondary": "bg-transparent border border-white/20 text-white hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-300 uppercase tracking-widest text-xs font-bold px-8 py-4 rounded-none",
+      "ghost": "text-white/60 hover:text-white transition-colors uppercase tracking-widest text-xs"
+    },
+    "cards": {
+      "property": "group relative overflow-hidden bg-[#0F0F0F] border border-white/5 hover:border-[#D4AF37]/30 transition-all duration-500",
+      "dashboard": "bg-[#0F0F0F] border border-white/5 p-6"
+    },
+    "inputs": {
+      "default": "bg-transparent border-b border-white/20 focus:border-[#D4AF37] outline-none py-4 text-white placeholder:text-white/30 transition-all rounded-none"
+    }
+  },
+  "motion": {
+    "libraries": ["framer-motion", "lenis"],
+    "transitions": {
+      "default": "transition-all duration-500 ease-[0.22, 1, 0.36, 1]",
+      "slow": "transition-all duration-1000 ease-[0.22, 1, 0.36, 1]"
+    },
+    "animations": {
+      "fade_up": {
+        "initial": { "opacity": 0, "y": 40 },
+        "animate": { "opacity": 1, "y": 0 },
+        "transition": { "duration": 0.8, "ease": "easeOut" }
+      },
+      "parallax": "useScroll + useTransform for y-axis movement"
+    }
+  },
+  "media": {
+    "image_urls": {
+      "hero_main": "https://images.pexels.com/photos/3195642/pexels-photo-3195642.jpeg",
+      "interior_living": "https://images.pexels.com/photos/6315800/pexels-photo-6315800.jpeg",
+      "texture_gold": "https://images.pexels.com/photos/6141905/pexels-photo-6141905.jpeg",
+      "agent_portrait": "https://images.pexels.com/photos/5922328/pexels-photo-5922328.jpeg"
+    }
+  },
+  "instructions_to_main_agent": [
+    "INSTALL 'lenis' for smooth scrolling immediately. It is non-negotiable for the premium feel.",
+    "USE 'Playfair Display' for all H1-H3 headings. USE 'Manrope' for body and UI text.",
+    "IMPLEMENT the 'Dark Luxury' theme by overriding Tailwind colors in index.css.",
+    "CREATE a 'Layout' component that handles the sidebar for Dashboard and Navbar for Marketing pages separately.",
+    "USE the 'glassmorphism' class for all floating elements (navbars, modals).",
+    "ENSURE all images have a subtle 'zoom' effect on hover.",
+    "FORBIDDEN: Do not use rounded-xl or rounded-2xl. Keep it sharp (rounded-none or rounded-sm).",
+    "FORBIDDEN: Do not use bright blues or greens. Stick to the Gold/Black/White palette.",
+    "ALWAYS use the 'texture_gold' image as a subtle overlay (opacity 5%) on the main background to avoid flat colors."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. In frontend design, this creates what users call the 'AI slop' aesthetic. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy",
+    "Use glass-morphism effects with backdrop filters (12-24px blur)",
+    "You MUST NOT apply universal transition. Eg: 'transition: all'. This results in breaking transforms. Always add transitions for specific interactive elements like button, input excluding transforms",
+    "You MUST NOT center align the app container, ie do not add '.App { text-align: center; }' in the css file. This disrupts the human natural reading flow of text",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style",
+    "NEVER: use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯📚🎭🎬🎪🎉🎊🎁🎀🎂🍰🎈🎨🎰💰💵💳🏦💎🪙💸🤑📊📈📉💹🔢🏆🥇 etc for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Subtle grain textures, noise overlays, custom cursors, selection states, and loading animations: separates good from extraordinary.",
+    "Main agent relies on these image URLs. Missing categories (especially sponsor logos) = main agent will use placeholder text which is FORBIDDEN",
+    "Prioritize using pre-existing components from src/components/ui when applicable",
+    "Create new components that match the style and conventions of existing components when needed",
+    "Examine existing components to understand the project's component patterns before creating new ones",
+    "Components MUST use named exports (export const ComponentName = ...)",
+    "Pages MUST use default exports (export default function PageName() {...})",
+    "Use 'sonner' for toasts",
+    "Sonner component are located in '/app/src/components/ui/sonner.tsx'"
+  ]
+}
