@@ -21,6 +21,11 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
 app = FastAPI()
+
+@app.get("/")
+async def root():
+    return {"status": "ok", "service": "luxestate-backend"}
+
 api_router = APIRouter(prefix="/api")
 security = HTTPBearer()
 
@@ -324,6 +329,41 @@ async def get_analytics(current_user: User = Depends(get_current_user)):
     )
 
 app.include_router(api_router)
+
+# Explicit app-level alias to ensure /api/properties is reachable
+@app.get("/api/properties", response_model=List[Property])
+async def get_properties_alias(
+    status: Optional[str] = None,
+    property_type: Optional[str] = None,
+    min_price: Optional[float] = None,
+    max_price: Optional[float] = None,
+    bedrooms: Optional[int] = None,
+    location: Optional[str] = None
+):
+    query = {}
+    if status:
+        query['status'] = status
+    if property_type:
+        query['property_type'] = property_type
+    if min_price is not None:
+        query['price'] = query.get('price', {})
+        query['price']['$gte'] = min_price
+    if max_price is not None:
+        query['price'] = query.get('price', {})
+        query['price']['$lte'] = max_price
+    if bedrooms is not None:
+        query['bedrooms'] = bedrooms
+    if location:
+        query['location'] = {'$regex': location, '$options': 'i'}
+
+    properties = await db.properties.find(query, {'_id': 0}).to_list(1000)
+    for prop in properties:
+        if isinstance(prop['created_at'], str):
+            prop['created_at'] = datetime.fromisoformat(prop['created_at'])
+        if isinstance(prop['updated_at'], str):
+            prop['updated_at'] = datetime.fromisoformat(prop['updated_at'])
+
+    return properties
 
 app.add_middleware(
     CORSMiddleware,
