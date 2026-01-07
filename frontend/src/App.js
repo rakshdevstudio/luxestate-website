@@ -14,6 +14,25 @@ import { AuthProvider } from '@/context/AuthContext';
 
 function App() {
   useEffect(() => {
+    // Remove any Emergent badge that might exist
+    const removeEmergentBadge = () => {
+      const badge = document.getElementById('emergent-badge');
+      if (badge) {
+        badge.remove();
+      }
+      // Also check for any links to emergent.sh
+      const emergentLinks = document.querySelectorAll('a[href*="emergent.sh"]');
+      emergentLinks.forEach(link => {
+        if (link.id === 'emergent-badge' || link.textContent.includes('Emergent')) {
+          link.remove();
+        }
+      });
+    };
+
+    // Remove badge immediately and also check periodically
+    removeEmergentBadge();
+    const interval = setInterval(removeEmergentBadge, 1000);
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -28,6 +47,7 @@ function App() {
     requestAnimationFrame(raf);
 
     return () => {
+      clearInterval(interval);
       lenis.destroy();
     };
   }, []);

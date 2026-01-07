@@ -7,6 +7,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hide Emergent badge permanently */
+#emergent-badge,
+a[id="emergent-badge"],
+a[href*="emergent.sh"],
+[data-emergent-badge] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+}
+
 @layer base {
     :root {
         --background: 0 0% 2%;
