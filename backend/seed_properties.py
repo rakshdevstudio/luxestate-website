@@ -369,6 +369,24 @@ def create_property(property_type, template, location, seller_id):
         "updated_at": datetime.now(timezone.utc).isoformat(),
     }
 
+async def create_admin_user():
+    """Create an admin user for the application."""
+    admin_id = str(uuid.uuid4())
+    admin = {
+        "id": admin_id,
+        "email": "admin@luxestate.com",
+        "name": "Admin User",
+        "role": "admin",
+        "password": "$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/X4.dW8KIuJ3eHFfTi",  # "password123"
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+    await db.users.update_one(
+        {"id": admin_id, "email": "admin@luxestate.com"},
+        {"$set": admin},
+        upsert=True
+    )
+    return admin_id
+
 async def create_seller_users(count=5):
     """Create sample seller users for the properties."""
     sellers = []
@@ -402,6 +420,11 @@ async def create_seller_users(count=5):
 async def seed_properties():
     """Seed the database with 50 properties."""
     print("🌱 Starting property seeding...")
+    
+    # Create admin user
+    print("Creating admin user...")
+    admin_id = await create_admin_user()
+    print(f"✅ Admin user created: admin@luxestate.com")
     
     # Create seller users
     print("Creating seller users...")
