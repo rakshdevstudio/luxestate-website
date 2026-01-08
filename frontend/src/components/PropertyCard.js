@@ -6,7 +6,7 @@ export const PropertyCard = ({ property }) => {
     <Link
       to={`/property/${property.id}`}
       data-testid={`property-card-${property.id}`}
-      className="group block bg-surface border border-white/5 hover:border-primary/30 transition-all duration-500 overflow-hidden"
+      className="group block bg-surface border border-white/5 hover:border-primary/30 hover-lift transition-all duration-500 overflow-hidden"
     >
       <div className="relative h-80 overflow-hidden">
         <img

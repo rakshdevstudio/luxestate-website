@@ -12,7 +12,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav data-testid="navbar" className="fixed top-0 left-0 right-0 z-50 glass">
+    <nav data-testid="navbar" className="fixed top-0 left-0 right-0 z-50 glass-strong">
       <div className="max-w-[1800px] mx-auto px-8 py-6 flex items-center justify-between">
         <Link to="/" data-testid="nav-logo" className="flex items-center gap-3">
           <Building2 className="w-8 h-8 text-primary" />

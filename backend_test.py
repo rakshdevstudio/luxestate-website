@@ -1,10 +1,14 @@
 import requests
 import sys
 import json
+import os
 from datetime import datetime
 
 class LuxEstateAPITester:
-    def __init__(self, base_url="https://premium-estates-24.preview.emergentagent.com"):
+    def __init__(self, base_url=None):
+        if base_url is None:
+            # Try localhost first, fallback to remote
+            base_url = os.environ.get("BACKEND_URL", "http://localhost:8080")
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.tokens = {}
@@ -344,8 +348,15 @@ class LuxEstateAPITester:
             )
 
 def main():
-    print("🏠 Starting LuxEstate API Testing...")
-    tester = LuxEstateAPITester()
+    # Allow base URL to be passed as command line argument
+    base_url = sys.argv[1] if len(sys.argv) > 1 else None
+    if base_url:
+        print(f"🏠 Starting LuxEstate API Testing against {base_url}...")
+    else:
+        print("🏠 Starting LuxEstate API Testing...")
+        print(f"   Using backend URL: {os.environ.get('BACKEND_URL', 'http://localhost:8080')}")
+    
+    tester = LuxEstateAPITester(base_url=base_url)
 
     # Run all tests
     tester.test_user_registration()

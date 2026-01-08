@@ -21,43 +21,38 @@ a[href*="emergent.sh"],
 
 @layer base {
     :root {
-        --background: 0 0% 2%;
+        --background: 0 0% 1.2%; /* #030303 */
         --foreground: 0 0% 95%;
-        --surface: 0 0% 6%;
-        --surface-highlight: 0 0% 10%;
+        --surface: 0 0% 3.9%; /* #0A0A0A */
+        --surface-highlight: 0 0% 7.8%; /* #141414 */
         --primary: 45 79% 53%;
-        --primary-muted: 45 61% 33%;
+        --primary-light: 45 90% 63%;
+        --primary-dark: 45 61% 33%;
         --text-main: 0 0% 95%;
         --text-muted: 0 0% 63%;
         --border: 0 0% 15%;
-        --card: 0 0% 6%;
-        --card-foreground: 0 0% 95%;
-        --popover: 0 0% 6%;
-        --popover-foreground: 0 0% 95%;
-        --secondary: 0 0% 15%;
-        --secondary-foreground: 0 0% 95%;
-        --muted: 0 0% 15%;
-        --muted-foreground: 0 0% 63%;
-        --accent: 0 0% 15%;
-        --accent-foreground: 0 0% 95%;
-        --destructive: 0 63% 25%;
-        --destructive-foreground: 0 0% 95%;
-        --input: 0 0% 15%;
-        --ring: 45 79% 53%;
-        --radius: 0rem;
     }
-}
 
-@layer base {
     * {
         @apply border-border;
+        scrollbar-width: thin;
+        scrollbar-color: #262626 transparent;
     }
+
+    /* Selection Color */
+    ::selection {
+        background: rgba(212, 175, 55, 0.3);
+        color: #F2F2F2;
+    }
+
     body {
-        @apply bg-[#050505] text-[#F2F2F2] font-sans;
+        @apply bg-background text-text-main font-sans;
         margin: 0;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
     }
+
     html {
         scroll-behavior: smooth;
     }
@@ -71,46 +66,45 @@ a[href*="emergent.sh"],
         font-family: 'Manrope', sans-serif;
     }
     .text-gradient-gold {
-        background: linear-gradient(135deg, #D4AF37 0%, #8A7020 100%);
+        background: linear-gradient(135deg, #F2C94C 0%, #D4AF37 50%, #8A7020 100%);
+        background-size: 200% auto;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        animation: shimmer 8s linear infinite reverse;
     }
     .glass {
-        background: rgba(0, 0, 0, 0.4);
-        backdrop-filter: blur(24px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(10, 10, 10, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    .glass-strong {
+        background: rgba(3, 3, 3, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .hover-lift {
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .hover-lift:hover {
+        transform: translateY(-4px);
     }
 }
 
 @layer base {
+    /* Retaining existing debug styles */
     [data-debug-wrapper="true"] {
         display: contents !important;
     }
 
     [data-debug-wrapper="true"] > * {
-        margin-left: inherit;
-        margin-right: inherit;
-        margin-top: inherit;
-        margin-bottom: inherit;
-        padding-left: inherit;
-        padding-right: inherit;
-        padding-top: inherit;
-        padding-bottom: inherit;
-        column-gap: inherit;
-        row-gap: inherit;
+        margin: inherit;
+        padding: inherit;
         gap: inherit;
-        border-left-width: inherit;
-        border-right-width: inherit;
-        border-top-width: inherit;
-        border-bottom-width: inherit;
-        border-left-style: inherit;
-        border-right-style: inherit;
-        border-top-style: inherit;
-        border-bottom-style: inherit;
-        border-left-color: inherit;
-        border-right-color: inherit;
-        border-top-color: inherit;
-        border-bottom-color: inherit;
     }
 }
