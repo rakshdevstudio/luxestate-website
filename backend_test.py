@@ -353,7 +353,7 @@ def main():
     if base_url:
         print(f"🏠 Starting LuxEstate API Testing against {base_url}...")
     else:
-        print("🏠 Starting LuxEstate API Testing...")
+    print("🏠 Starting LuxEstate API Testing...")
         print(f"   Using backend URL: {os.environ.get('BACKEND_URL', 'http://localhost:8080')}")
     
     tester = LuxEstateAPITester(base_url=base_url)
